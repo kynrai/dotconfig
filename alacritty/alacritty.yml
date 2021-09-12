@@ -1,0 +1,32 @@
+window:
+  dimensions:
+    columns: 180
+    lines: 50
+scrolling:
+  history: 10000
+  multiplier: 3
+font:
+  normal:
+    family: FiraCode Nerd Font Mono
+    style: Retina
+  size: 12.0
+
+# Colors (Material Theme (Deep Ocean))
+colors:
+  primary:
+    background: '#0F111A'
+    foreground: '#8F93A2'
+
+  normal:
+    black:   '#000000'
+    red:     '#f07178'
+    green:   '#c3e88d'
+    yellow:  '#ffcb6b'
+    blue:    '#82aaff'
+    magenta: '#c792ea'
+    cyan:    '#89ddff'
+    white:   '#eeffff'
+
+key_bindings:
+  # Fix for UK mac not recognising # key combo
+  - { key: Key3,     mods: Alt,     chars: "#"                        }

@@ -1,0 +1,11 @@
+# Ignore everything
+*
+
+# Allow only these configs
+!.gitignore
+!/README.md
+!starship.toml
+!*/
+!alacritty/*
+!nvim/**
+nvim/plugin/
