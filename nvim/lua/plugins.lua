@@ -50,6 +50,7 @@ packer.startup(function()
 	use 'glepnir/lspsaga.nvim'
 	use 'b3nj5m1n/kommentary'
 	use 'ray-x/go.nvim'
+	use 'tversteeg/registers.nvim'
 end
 )
 
@@ -142,5 +143,10 @@ require('gitsigns').setup({
 })
 
 require'snippets'.snippets = {}
+
+
+require('kommentary.config').configure_language("default", {
+	prefer_single_line_comments = true,
+})
 
 require('lspsaga').init_lsp_saga()
