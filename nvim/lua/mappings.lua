@@ -14,7 +14,6 @@ map('n', '<leader>ff', ':Telescope find_files<CR>', {noremap = true}) 	-- find a
 map('n', '<leader>fg', ':Telescope live_grep<CR>', {noremap = true}) 	-- find things files with telescope
 map('n', '<leader>fb', ':Telescope buffers<CR>', {noremap = true}) 	-- find all buffers with telescope
 map('n', '<leader>fh', ':Telescope help_tags<CR>', {noremap = true}) 	-- find help files with telescope
-map('n', '<leader>w', ':HopWord<CR>', {noremap = true}) 		-- for fast word nav
 map('n', '<leader>b', ':NvimTreeToggle<CR>', {noremap = true}) 		-- for opening and closer the file browser
 map('n', '<leader>h', ':Gitsigns preview_hunk<CR>', {noremap = true}) 	-- show the git hunk
 map('n', 'gh', ':Lspsaga lsp_finder<CR>', {noremap = true}) 		-- show definitons in saga
