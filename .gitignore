@@ -4,9 +4,10 @@
 # Allow only these configs
 !.gitignore
 !/README.md
-!starship.toml
-!*/
+!/starship.toml
 !alacritty/*
 !bat/*
+!tmux/tmux.conf
+tmux/plugins/
 !nvim/**
 nvim/plugin/
