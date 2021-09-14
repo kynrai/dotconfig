@@ -39,6 +39,7 @@ require('packer').startup(function()
 	use 'b3nj5m1n/kommentary'
 	use 'ray-x/go.nvim'
 	use 'tversteeg/registers.nvim'
+	use 'norcalli/nvim-colorizer.lua'
 end
 )
 
@@ -138,3 +139,5 @@ require('kommentary.config').configure_language("default", {
 })
 
 require('lspsaga').init_lsp_saga()
+
+require'colorizer'.setup()
