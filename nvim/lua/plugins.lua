@@ -34,6 +34,7 @@ require('packer').startup(function()
 		'kyazdani42/nvim-tree.lua',
 		requires = 'kyazdani42/nvim-web-devicons'
 	}
+	use 'crispgm/nvim-tabline'
 	use 'norcalli/snippets.nvim'
 	use 'glepnir/lspsaga.nvim'
 	use 'b3nj5m1n/kommentary'
@@ -141,3 +142,5 @@ require('kommentary.config').configure_language("default", {
 require('lspsaga').init_lsp_saga()
 
 require'colorizer'.setup()
+
+require('tabline').setup({})
