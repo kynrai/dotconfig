@@ -9,5 +9,6 @@
 !/bat/*
 !/tmux/tmux.conf
 !/nvim/init.lua
+!/nvim
 !/nvim/*
 /nvim/plugins/

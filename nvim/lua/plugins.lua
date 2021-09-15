@@ -10,6 +10,7 @@ end
 require('packer').startup(function()
 	local use = use
 	use 'wbthomason/packer.nvim'
+	use 'Mofiqul/dracula.nvim'
 	use 'marko-cerovac/material.nvim'
 	use {
 		'hoob3rt/lualine.nvim',
@@ -43,7 +44,8 @@ end
 
 -- setup lualine and fonts
 require'lualine'.setup{
-	options = {theme = 'material-nvim'},
+	-- options = {theme = 'material-nvim'},
+	options = {theme = 'dracula-nvim'},
 }
 
 require'nvim-web-devicons'.setup {
