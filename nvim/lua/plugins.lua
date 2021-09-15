@@ -34,7 +34,6 @@ require('packer').startup(function()
 		requires = 'kyazdani42/nvim-web-devicons'
 	}
 	use 'crispgm/nvim-tabline'
-	use 'norcalli/snippets.nvim'
 	use 'b3nj5m1n/kommentary'
 	use 'ray-x/go.nvim'
 	use 'tversteeg/registers.nvim'
@@ -104,8 +103,6 @@ for _, lsp in ipairs(servers) do
 		}
 	}
 end
-
-require'snippets'.snippets = {}
 
 -- Setup telescope
 require('telescope').setup({
