@@ -18,5 +18,4 @@ map('n', '<leader>fh', ':Telescope help_tags<CR>', {noremap = true}) 	-- find he
 map('n', '<leader>b', ':NvimTreeToggle<CR>', {noremap = true}) 		-- for opening and closer the file browser
 map('n', '<leader>h', ':Gitsigns preview_hunk<CR>', {noremap = true}) 	-- show the git hunk
 map('n', 'gh', ':Lspsaga lsp_finder<CR>', {noremap = true}) 		-- show definitons in saga
-map('n', '<leader>ca', ':Lspsaga code_action<CR>', {noremap = true}) 	-- show actions in saga
 

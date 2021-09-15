@@ -20,7 +20,6 @@ require('packer').startup(function()
 		run = ':TSUpdate'
 	}
 	use 'neovim/nvim-lspconfig'
-	use 'nvim-lua/completion-nvim'
 	use {
 		'nvim-telescope/telescope.nvim',
 		requires = { {'nvim-lua/plenary.nvim'} }
@@ -36,11 +35,9 @@ require('packer').startup(function()
 	}
 	use 'crispgm/nvim-tabline'
 	use 'norcalli/snippets.nvim'
-	use 'glepnir/lspsaga.nvim'
 	use 'b3nj5m1n/kommentary'
 	use 'ray-x/go.nvim'
 	use 'tversteeg/registers.nvim'
-	use 'norcalli/nvim-colorizer.lua'
 end
 )
 
@@ -108,11 +105,7 @@ for _, lsp in ipairs(servers) do
 	}
 end
 
-vim.g.completion_enable_snippet = 'snippets.nvim'
-
--- TODO https://github.com/nvim-lua/completion-nvim Add more snippets and completion sources
--- Setup completion on all buffers
-vim.cmd('autocmd BufEnter * lua require\'completion\'.on_attach()')
+require'snippets'.snippets = {}
 
 -- Setup telescope
 require('telescope').setup({
@@ -132,17 +125,14 @@ require('gitsigns').setup({
 	},
 })
 
-require'snippets'.snippets = {}
 
 
 require('kommentary.config').configure_language("default", {
 	prefer_single_line_comments = true,
 })
 
-require('lspsaga').init_lsp_saga()
-
-require'colorizer'.setup()
 
 require('tabline').setup({})
 
 vim.g.nvim_tree_tab_open = 1
+
