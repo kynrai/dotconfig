@@ -55,6 +55,9 @@ require'nvim-treesitter.configs'.setup {
 	highlight = {
 		enable = true,
 	},
+	indent = {
+		enable = true
+	}
 }
 
 local nvim_lsp = require('lspconfig')
