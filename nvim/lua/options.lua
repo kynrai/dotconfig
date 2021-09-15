@@ -1,5 +1,4 @@
 vim.opt.cursorline = true				-- highlight the line
-vim.opt.showtabline=0					-- always hide the tab line
 vim.opt.number = true					-- show line numbers
 vim.opt.relativenumber = true				-- show line numbers relative to cursor
 vim.opt.backup = false					-- no backup files
