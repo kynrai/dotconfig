@@ -10,6 +10,7 @@ end
 vim.g.mapleader = ','							-- change the <leader> key to be comma
 
 map('n', '<CR>', ':noh<CR><CR>', {noremap = true})			-- clears search highlight & still be enter
+map('n', '<leader>gw', ':tabclose<CR>', {noremap = true})		-- quick way to close a tab
 map('n', '<leader>ff', ':Telescope find_files<CR>', {noremap = true}) 	-- find all files with telescope
 map('n', '<leader>fg', ':Telescope live_grep<CR>', {noremap = true}) 	-- find things files with telescope
 map('n', '<leader>fb', ':Telescope buffers<CR>', {noremap = true}) 	-- find all buffers with telescope

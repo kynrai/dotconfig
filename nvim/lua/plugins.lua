@@ -144,3 +144,5 @@ require('lspsaga').init_lsp_saga()
 require'colorizer'.setup()
 
 require('tabline').setup({})
+
+vim.g.nvim_tree_tab_open = 1
