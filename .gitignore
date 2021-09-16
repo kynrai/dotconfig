@@ -5,10 +5,13 @@
 !.gitignore
 !/README.md
 !/starship.toml
+!/alacritty/
 !/alacritty/*
+!/bat/
 !/bat/*
-!/tmux/tmux.conf
-!/nvim/init.lua
-!/nvim
+!/tmux/
+!/tmux/*
+!/nvim/
 !/nvim/*
+!/nvim/lua/*
 /nvim/plugins/
