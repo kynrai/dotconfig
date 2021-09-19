@@ -11,5 +11,6 @@ vim.opt.copyindent = true				-- copy the previous indetation on autoindenting
 vim.opt.wildmode = 'list:full'				-- show full list of options on wild menu tab complete
 vim.opt.showmode = false				-- hide mode, for use with status line plugins
 vim.opt.completeopt = 'menuone,noinsert,noselect'	-- better completion experiance
-vim.opt.mouse = 'a'					-- enable mouse support
 vim.opt.termguicolors = true				-- true color mode
+vim.opt_global.mouse :append('a')			-- enable mouse support
+vim.opt_global.shortmess:remove("F"):append("c")	-- useful for scala

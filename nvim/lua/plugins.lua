@@ -34,13 +34,13 @@ require('packer').startup(function()
 		'kyazdani42/nvim-tree.lua',
 		requires = 'kyazdani42/nvim-web-devicons'
 	}
+	use 'scalameta/nvim-metals'
 	use 'crispgm/nvim-tabline'
 	use 'b3nj5m1n/kommentary'
 	use 'ray-x/go.nvim'
 	use 'tversteeg/registers.nvim'
 end
 )
-
 
 -- setup lualine and fonts
 require'lualine'.setup{
