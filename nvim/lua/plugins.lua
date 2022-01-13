@@ -11,6 +11,7 @@ require('packer').startup(function()
 	local use = use
 	use 'wbthomason/packer.nvim'
 	use 'Mofiqul/dracula.nvim'
+	use 'shaunsingh/nord.nvim'
 	use 'marko-cerovac/material.nvim'
 	use {
 		'hoob3rt/lualine.nvim',
@@ -32,7 +33,8 @@ require('packer').startup(function()
 	}
 	use {
 		'kyazdani42/nvim-tree.lua',
-		requires = 'kyazdani42/nvim-web-devicons'
+		requires = 'kyazdani42/nvim-web-devicons',
+		config = function() require'nvim-tree'.setup {} end
 	}
 	use 'scalameta/nvim-metals'
 	use 'crispgm/nvim-tabline'
@@ -135,6 +137,4 @@ require('kommentary.config').configure_language("default", {
 
 
 require('tabline').setup({})
-
-vim.g.nvim_tree_tab_open = 1
 
