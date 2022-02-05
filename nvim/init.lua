@@ -64,6 +64,7 @@ end)
 require'nvim-tree'.setup {
   open_on_setup = true,
   open_on_tab = true,
+  auto_close = true,
 }
 
 require'lualine'.setup {options = {theme = 'nord'}}
