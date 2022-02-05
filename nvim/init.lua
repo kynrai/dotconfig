@@ -42,10 +42,7 @@ require('packer').startup(function(use)
   use 'shaunsingh/nord.nvim'
   use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
   use {'nvim-lualine/lualine.nvim', requires = {'kyazdani42/nvim-web-devicons', opt = true}}
-  use {
-      'kyazdani42/nvim-tree.lua', requires = {'kyazdani42/nvim-web-devicons', opt = true},
-      config = function() require'nvim-tree'.setup {} end
-  }
+  use {'kyazdani42/nvim-tree.lua', requires = {'kyazdani42/nvim-web-devicons', opt = true}}
   use 'neovim/nvim-lspconfig'
   use {'nvim-telescope/telescope.nvim', requires = {'nvim-lua/plenary.nvim'}}
   use 'tversteeg/registers.nvim'
@@ -64,8 +61,12 @@ require('packer').startup(function(use)
   end
 end)
 
--- setup lualine and fonts
-require('lualine').setup {options = {theme = 'nord'}}
+require'nvim-tree'.setup {
+  open_on_setup = true,
+  open_on_tab = true,
+}
+
+require'lualine'.setup {options = {theme = 'nord'}}
 
 require'nvim-web-devicons'.setup {default = true}
 
@@ -76,16 +77,16 @@ require'nvim-treesitter.configs'.setup {
 }
 
 -- setup telescope
-require('telescope').setup({defaults = {
+require'telescope'.setup {defaults = {
   layout_config = {horizontal = {preview_width = 0.65}},
-}})
+}}
 
-require('kommentary.config').configure_language("default", {prefer_single_line_comments = true})
+require'kommentary.config'.configure_language("default", {prefer_single_line_comments = true})
 
-require('gitsigns').setup({
+require'gitsigns'.setup {
   current_line_blame = true,
   current_line_blame_formatter_opts = {relative_time = true},
-})
+}
 
 -- LSP settings (NavLSP)
 -- Mappings.
@@ -121,7 +122,7 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'pyright', 'rust_analyzer', 'tsserver' }
+local servers = { 'pyright', 'rust_analyzer', 'tsserver', 'gopls'}
 for _, lsp in pairs(servers) do
   require('lspconfig')[lsp].setup {
     on_attach = on_attach,
