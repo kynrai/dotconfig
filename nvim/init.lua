@@ -123,7 +123,7 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'pyright', 'rust_analyzer', 'tsserver', 'gopls'}
+local servers = { 'pyright', 'rust_analyzer', 'tsserver', 'gopls', 'terraformls' }
 for _, lsp in pairs(servers) do
   require('lspconfig')[lsp].setup {
     on_attach = on_attach,
@@ -133,6 +133,9 @@ for _, lsp in pairs(servers) do
     }
   }
 end
+
+-- set some rules for some of the lsp
+vim.api.nvim_exec([[ autocmd BufWritePre *.tf lua vim.lsp.buf.formatting_sync() ]], false)
 
 -- set colourscheme (NavTheme)
 vim.g.nord_contrast = true
