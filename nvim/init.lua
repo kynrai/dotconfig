@@ -52,6 +52,10 @@ require('packer').startup(function(use)
     config = function() require('tabline').setup({}) end,
   }
   use {'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'}}
+  use {
+    "folke/trouble.nvim", requires = {"kyazdani42/nvim-web-devicons", opt = true},
+    config = function() require("trouble").setup({}) end,
+  }
 
   -- languages support
   use 'ray-x/go.nvim'
@@ -62,7 +66,6 @@ require('packer').startup(function(use)
 end)
 
 require'nvim-tree'.setup {
-  open_on_setup = true,
   open_on_tab = true,
   auto_close = true,
 }
@@ -162,6 +165,14 @@ map('n', '<leader>fb', ':Telescope buffers<CR>', {noremap = true}) 	-- find all 
 map('n', '<leader>fh', ':Telescope help_tags<CR>', {noremap = true}) 	-- find help files with telescope
 map('n', '<leader>b', ':NvimTreeToggle<CR>', {noremap = true}) 		-- for opening and closer the file browser
 map('n', '<leader>h', ':Gitsigns preview_hunk<CR>', {noremap = true}) 	-- show the git hunk
+
+map("n", "<leader>xx", "<cmd>Trouble<cr>", {silent = true, noremap = true})
+map("n", "<leader>xc", "<cmd>TroubleClose<cr>", {silent = true, noremap = true})
+map("n", "<leader>xw", "<cmd>Trouble workspace_diagnostics<cr>", {silent = true, noremap = true})
+map("n", "<leader>xd", "<cmd>Trouble document_diagnostics<cr>", {silent = true, noremap = true})
+map("n", "<leader>xl", "<cmd>Trouble loclist<cr>", {silent = true, noremap = true})
+map("n", "<leader>xq", "<cmd>Trouble quickfix<cr>", {silent = true, noremap = true})
+map("n", "gR", "<cmd>Trouble lsp_references<cr>", {silent = true, noremap = true})
 
 -- golang (NavGolang)
 require('go').setup()
