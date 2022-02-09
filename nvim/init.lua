@@ -39,7 +39,8 @@ end
 
 require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
-  use 'shaunsingh/nord.nvim'
+  use 'Mofiqul/dracula.nvim'
+  use 'folke/lsp-colors.nvim'
   use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
   use {'nvim-lualine/lualine.nvim', requires = {'kyazdani42/nvim-web-devicons', opt = true}}
   use {'kyazdani42/nvim-tree.lua', requires = {'kyazdani42/nvim-web-devicons', opt = true}}
@@ -70,7 +71,7 @@ require'nvim-tree'.setup {
   auto_close = true,
 }
 
-require'lualine'.setup {options = {theme = 'nord'}}
+require'lualine'.setup {options = {theme = 'dracula-nvim'}}
 
 require'nvim-web-devicons'.setup {default = true}
 
@@ -141,9 +142,7 @@ end
 vim.api.nvim_exec([[ autocmd BufWritePre *.tf lua vim.lsp.buf.formatting_sync() ]], false)
 
 -- set colourscheme (NavTheme)
-vim.g.nord_contrast = true
-vim.g.nord_borders = true
-require('nord').set()
+vim.cmd[[colorscheme dracula]]
 
 -- mappings (NavMappings)
 -- need a map method to handle the different kinds of key maps
