@@ -11,6 +11,13 @@ font:
     style: Retina
   size: 12.0
 
+shell:
+  program: zsh
+  args:
+    - -l
+    - -c
+    - "tmux attach || tmux new -s main"
+
 # Colors (Material Theme (Deep Ocean))
 # colors:
 #   primary:
