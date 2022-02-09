@@ -50,10 +50,7 @@ require('packer').startup(function(use)
   use {'nvim-telescope/telescope.nvim', requires = {'nvim-lua/plenary.nvim'}}
   use 'tversteeg/registers.nvim'
   use 'b3nj5m1n/kommentary'
-  use {
-    'crispgm/nvim-tabline',
-    config = function() require('tabline').setup({}) end,
-  }
+  use {'romgrk/barbar.nvim', requires = {'kyazdani42/nvim-web-devicons'}}
   use {'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'}}
   use {
     "folke/trouble.nvim", requires = {"kyazdani42/nvim-web-devicons", opt = true},
