@@ -3,7 +3,7 @@ window:
     columns: 180
     lines: 50
 scrolling:
-  history: 10000
+  history: 20000
   multiplier: 3
 font:
   normal:
