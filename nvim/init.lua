@@ -175,6 +175,15 @@ map("n", "<leader>xl", "<cmd>Trouble loclist<cr>", {silent = true, noremap = tru
 map("n", "<leader>xq", "<cmd>Trouble quickfix<cr>", {silent = true, noremap = true})
 map("n", "gR", "<cmd>Trouble lsp_references<cr>", {silent = true, noremap = true})
 
+-- Move to previous/next
+map('n', '<leader>[', ':BufferPrevious<CR>', { noremap = true, silent = true })
+map('n', '<keader>]', ':BufferNext<CR>', { noremap = true, silent = true })
+-- Re-order to previous/next
+map('n', '<leader>{', ':BufferMovePrevious<CR>', { noremap = true, silent = true })
+map('n', '<leader>}', ' :BufferMoveNext<CR>',{ noremap = true, silent = true } )
+-- Close buffer
+map('n', '<leader>w', ':BufferClose<CR>', { noremap = true, silent = true })
+
 -- golang (NavGolang)
 require('go').setup()
 vim.api.nvim_exec([[ autocmd BufWritePre *.go :silent! lua require('go.format').goimport() ]], false)
