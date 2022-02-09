@@ -10,6 +10,8 @@
 
 -- options (NavOptions)
 -- Set custom options for nvim in lua
+vim.opt.shiftwidth = 4						-- shift 4 spaces when tab
+vim.opt.tabstop = 4						-- 1 tab == 4 spaces
 vim.opt.cursorline = true					-- highlight the line
 vim.opt.number = true						-- show line numbers
 vim.opt.relativenumber = true					-- show line numbers relative to cursor
@@ -69,6 +71,10 @@ end)
 require'nvim-tree'.setup {
   open_on_tab = true,
   auto_close = true,
+  hijack_cursor = true,
+  diagnostics = {
+    enable = true
+  }
 }
 
 require'lualine'.setup {options = {theme = 'dracula-nvim'}}
