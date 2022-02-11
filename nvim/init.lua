@@ -11,10 +11,10 @@
 -- options (NavOptions)
 -- Set custom options for nvim in lua
 vim.opt.shiftwidth = 4						-- shift 4 spaces when tab
-vim.opt.tabstop = 4						-- 1 tab == 4 spaces
+vim.opt.tabstop = 4							-- 1 tab == 4 spaces
 vim.opt.cursorline = true					-- highlight the line
 vim.opt.number = true						-- show line numbers
-vim.opt.relativenumber = true					-- show line numbers relative to cursor
+vim.opt.relativenumber = true				-- show line numbers relative to cursor
 vim.opt.backup = false						-- no backup files
 vim.opt.swapfile = false					-- no swap files
 vim.opt.signcolumn = 'yes'					-- always show the sign column / git gutter
@@ -146,6 +146,7 @@ vim.api.nvim_exec([[ autocmd BufWritePre *.tf lua vim.lsp.buf.formatting_sync() 
 
 -- set colourscheme (NavTheme)
 vim.cmd[[colorscheme dracula]]
+vim.cmd[[highlight link GitSignsCurrentLineBlame Visual]]
 
 -- mappings (NavMappings)
 -- need a map method to handle the different kinds of key maps
