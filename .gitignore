@@ -11,7 +11,10 @@
 !/bat/*
 !/tmux/
 !/tmux/*
+!/helix/
+!/helix/*
 !/nvim/
 !/nvim/*
 !/nvim/lua/*
 /nvim/plugins/
+
