@@ -2,6 +2,7 @@ theme = "dracula"
 
 [editor]
 line-number = "relative"
+idle-timeout = 200
 
 [editor.lsp]
 display-messages = true
