@@ -4,5 +4,8 @@ theme = "dracula"
 line-number = "relative"
 idle-timeout = 200
 
+[editor.file-picker]
+hidden = false
+
 [editor.lsp]
 display-messages = true

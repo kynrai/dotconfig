@@ -13,8 +13,9 @@
 !/tmux/*
 !/helix/
 !/helix/*
+/helix/runtime
 !/nvim/
 !/nvim/*
 !/nvim/lua/*
 /nvim/plugins/
-
+!.zshrc
