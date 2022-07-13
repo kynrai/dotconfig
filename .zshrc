@@ -40,3 +40,6 @@ if [ -f '/Users/steve/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/ste
 export PATH="/opt/homebrew/opt/node@16/bin:$PATH"
 
 export PATH="/Users/steve/Library/Python/3.10/bin:$PATH"
+export PATH="$HOME/.poetry/bin:$PATH"
+
+source /Users/steve/.config/broot/launcher/bash/br
