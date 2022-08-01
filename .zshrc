@@ -42,8 +42,6 @@ export PATH="/opt/homebrew/opt/node@16/bin:$PATH"
 export PATH="/Users/steve/Library/Python/3.10/bin:$PATH"
 export PATH="$HOME/.poetry/bin:$PATH"
 
-source /Users/steve/.config/broot/launcher/bash/br
-
 # bun completions
 [ -s "/Users/steve/.bun/_bun" ] && source "/Users/steve/.bun/_bun"
 

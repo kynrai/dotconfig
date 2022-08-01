@@ -29,6 +29,15 @@ vim.opt.undolevels = 10000									-- set the number of undos available
 vim.opt.wildmode = 'list:full'								-- show full list of options on wild menu tab complete
 vim.opt_global.mouse :append('a')							-- enable mouse support
 
+-- Better Netrw
+vim.g.netrw_banner = 0
+vim.g.netrw_winsize = 30
+vim.g.netrw_keepdir = 0
+vim.g.netrw_liststyle = 3
+vim.g.netrw_localcopydircmd = 'cp -r'
+vim.g.netrw_list_hide = (vim.fn["netrw_gitignore#Hide"]()) .. [[,\(^\|\s\s\)\zs\.\S\+]] -- use .gitignore
+vim.cmd[[highlight link netrwMarkFile Search]]
+
 -- packer (NavPlugins)
 -- bootstrap packer to install if it does not already exist
 local fn = vim.fn
@@ -144,10 +153,11 @@ vim.cmd[[highlight link GitSignsCurrentLineBlame Visual]]
 -- mappings (NavMappings)
 vim.g.mapleader = ','							-- change the <leader> key to be comma
 
-vim.keymap.set('n', '<CR>', ':noh<CR><CR>', {noremap = true})			-- clears search highlight & still be enter
-vim.keymap.set('n', '<leader>ff', ':Telescope find_files<CR>', {noremap = true}) 	-- find all files with telescope
-vim.keymap.set('n', '<leader>fg', ':Telescope live_grep<CR>', {noremap = true}) 	-- find things files with telescope
-vim.keymap.set('n', '<leader>fb', ':Telescope buffers<CR>', {noremap = true}) 	-- find all buffers with telescope
-vim.keymap.set('n', '<leader>fh', ':Telescope help_tags<CR>', {noremap = true}) 	-- find help files with telescope
-vim.keymap.set('n', '<leader>h', ':Gitsigns preview_hunk<CR>', {noremap = true}) 	-- show the git hunk
-
+vim.keymap.set('n', '<CR>', ':noh<CR><CR>', {noremap = true})						-- clears search highlight & still be enter
+vim.keymap.set('n', '<leader>ff', ':Telescope find_files<CR>', {noremap = true})	-- find all files with telescope
+vim.keymap.set('n', '<leader>fg', ':Telescope live_grep<CR>', {noremap = true})		-- find things files with telescope
+vim.keymap.set('n', '<leader>fb', ':Telescope buffers<CR>', {noremap = true})		-- find all buffers with telescope
+vim.keymap.set('n', '<leader>fh', ':Telescope help_tags<CR>', {noremap = true})		-- find help files with telescope
+vim.keymap.set('n', '<leader>h', ':Gitsigns preview_hunk<CR>', {noremap = true})	-- show the git hunk
+vim.keymap.set('n', '<leader>dd', ':Lexplore %:p:h<CR>', {noremap = true})			-- explore file
+vim.keymap.set('n', '<Leader>da', ':Lexplore<CR>', {noremap = true})				-- explore directory
