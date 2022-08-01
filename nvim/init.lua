@@ -3,10 +3,9 @@
 --
 -- 1. Options	(NavOptions)
 -- 2. Plugins	(NavPlugins)
--- 3. LSP	(NavLSP)
--- 4. Theme	(NavTheme)
+-- 3. LSP		(NavLSP)
+-- 4. Theme		(NavTheme)
 -- 5. Mappings	(NavMappings)
--- 6. Golang	(NavGolang)
 
 -- options (NavOptions)
 -- Set custom options for nvim in lua
@@ -40,37 +39,21 @@ end
 
 require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
-  use 'Mofiqul/dracula.nvim'
-  use 'folke/lsp-colors.nvim'
+  use 'neovim/nvim-lspconfig'
   use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
   use {'nvim-lualine/lualine.nvim', requires = {'kyazdani42/nvim-web-devicons', opt = true}}
-  use {'kyazdani42/nvim-tree.lua', requires = {'kyazdani42/nvim-web-devicons', opt = true}}
-  use 'neovim/nvim-lspconfig'
+  use 'folke/lsp-colors.nvim'
   use {'nvim-telescope/telescope.nvim', requires = {'nvim-lua/plenary.nvim'}}
   use 'tversteeg/registers.nvim'
-  use 'b3nj5m1n/kommentary'
-  use {'romgrk/barbar.nvim', requires = {'kyazdani42/nvim-web-devicons'}}
+  use 'terrortylor/nvim-comment'
+  use 'JoosepAlviste/nvim-ts-context-commentstring'	
   use {'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'}}
-  use {
-    "folke/trouble.nvim", requires = {"kyazdani42/nvim-web-devicons", opt = true},
-    config = function() require("trouble").setup({}) end,
-  }
-
-  -- languages support
-  use 'ray-x/go.nvim'
+  use 'Mofiqul/dracula.nvim'
 
   if packer_bootstrap then
     require('packer').sync()
   end
 end)
-
-require'nvim-tree'.setup {
-  open_on_tab = true,
-  hijack_cursor = true,
-  diagnostics = {
-    enable = true
-  }
-}
 
 require'lualine'.setup {options = {theme = 'dracula-nvim'}}
 
@@ -80,7 +63,11 @@ require'nvim-treesitter.configs'.setup {
   ensure_installed = "all",
   ignore_install = { "phpdoc" },
   highlight = {enable = true},
-  indent = {enable = true}
+  indent = {enable = true},
+  context_commentstring = {
+    enable = true,
+    enable_autocmd = false,
+  }
 }
 
 -- setup telescope
@@ -88,21 +75,26 @@ require'telescope'.setup {defaults = {
   layout_config = {horizontal = {preview_width = 0.65}},
 }}
 
-require'kommentary.config'.configure_language("default", {prefer_single_line_comments = true})
-
 require'gitsigns'.setup {
   current_line_blame = true,
   current_line_blame_formatter_opts = {relative_time = true},
 }
 
+require("nvim_comment").setup({
+  comment_empty = false,
+  hook = function()
+    require("ts_context_commentstring.internal").update_commentstring()
+  end,
+})
+
 -- LSP settings (NavLSP)
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap=true, silent=true }
-vim.api.nvim_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-vim.api.nvim_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
+vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -112,33 +104,35 @@ local on_attach = function(client, bufnr)
 
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+  local bufopts = { noremap=true, silent=true, buffer=bufnr }
+  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+  vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+  vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
+  vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+  vim.keymap.set('n', '<space>wl', function()
+    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+  end, bufopts)
+  vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
+  vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
+  vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
+  vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+  vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
 end
 
--- Use a loop to conveniently call 'setup' on multiple servers and
--- map buffer local keybindings when the language server attaches
-local servers = { 'pyright', 'rust_analyzer', 'tsserver', 'gopls', 'terraformls' }
-for _, lsp in pairs(servers) do
-  require('lspconfig')[lsp].setup {
+require('lspconfig')['rust_analyzer'].setup{
     on_attach = on_attach,
-    flags = {
-      -- This will be the default in neovim 0.7+
-      debounce_text_changes = 150,
-    }
-  }
-end
+}
+
+require('lspconfig')['gopls'].setup{
+    on_attach = on_attach,
+}
+
+require('lspconfig')['terraformls'].setup{
+    on_attach = on_attach,
+}
 
 -- set some rules for some of the lsp
 vim.api.nvim_exec([[ autocmd BufWritePre *.tf lua vim.lsp.buf.formatting_sync() ]], false)
@@ -148,43 +142,12 @@ vim.cmd[[colorscheme dracula]]
 vim.cmd[[highlight link GitSignsCurrentLineBlame Visual]]
 
 -- mappings (NavMappings)
--- need a map method to handle the different kinds of key maps
-local function map(mode, combo, mapping, opts)
-  local options = {noremap = true}
-  if opts then
-    options = vim.tbl_extend('force', options, opts)
-  end
-  vim.api.nvim_set_keymap(mode, combo, mapping, options)
-end
-
 vim.g.mapleader = ','							-- change the <leader> key to be comma
 
-map('n', '<CR>', ':noh<CR><CR>', {noremap = true})			-- clears search highlight & still be enter
-map('n', '<leader>gw', ':tabclose<CR>', {noremap = true})		-- quick way to close a tab
-map('n', '<leader>ff', ':Telescope find_files<CR>', {noremap = true}) 	-- find all files with telescope
-map('n', '<leader>fg', ':Telescope live_grep<CR>', {noremap = true}) 	-- find things files with telescope
-map('n', '<leader>fb', ':Telescope buffers<CR>', {noremap = true}) 	-- find all buffers with telescope
-map('n', '<leader>fh', ':Telescope help_tags<CR>', {noremap = true}) 	-- find help files with telescope
-map('n', '<leader>b', ':NvimTreeToggle<CR>', {noremap = true}) 		-- for opening and closer the file browser
-map('n', '<leader>h', ':Gitsigns preview_hunk<CR>', {noremap = true}) 	-- show the git hunk
-
-map("n", "<leader>xx", "<cmd>TroubleToggle<cr>", {silent = true, noremap = true})
-map("n", "<leader>xw", "<cmd>Trouble workspace_diagnostics<cr>", {silent = true, noremap = true})
-map("n", "<leader>xd", "<cmd>Trouble document_diagnostics<cr>", {silent = true, noremap = true})
-map("n", "<leader>xl", "<cmd>Trouble loclist<cr>", {silent = true, noremap = true})
-map("n", "<leader>xq", "<cmd>Trouble quickfix<cr>", {silent = true, noremap = true})
-map("n", "gR", "<cmd>Trouble lsp_references<cr>", {silent = true, noremap = true})
-
--- Move to previous/next
-map('n', '<leader>[', ':BufferPrevious<CR>', { noremap = true, silent = true })
-map('n', '<leader>]', ':BufferNext<CR>', { noremap = true, silent = true })
--- Re-order to previous/next
-map('n', '<leader>{', ':BufferMovePrevious<CR>', { noremap = true, silent = true })
-map('n', '<leader>}', ' :BufferMoveNext<CR>',{ noremap = true, silent = true } )
--- Close buffer
-map('n', '<leader>w', ':BufferClose<CR>', { noremap = true, silent = true })
-
--- golang (NavGolang)
-require('go').setup()
-vim.api.nvim_exec([[ autocmd BufWritePre *.go :silent! lua require('go.format').goimport() ]], false)
+vim.keymap.set('n', '<CR>', ':noh<CR><CR>', {noremap = true})			-- clears search highlight & still be enter
+vim.keymap.set('n', '<leader>ff', ':Telescope find_files<CR>', {noremap = true}) 	-- find all files with telescope
+vim.keymap.set('n', '<leader>fg', ':Telescope live_grep<CR>', {noremap = true}) 	-- find things files with telescope
+vim.keymap.set('n', '<leader>fb', ':Telescope buffers<CR>', {noremap = true}) 	-- find all buffers with telescope
+vim.keymap.set('n', '<leader>fh', ':Telescope help_tags<CR>', {noremap = true}) 	-- find help files with telescope
+vim.keymap.set('n', '<leader>h', ':Gitsigns preview_hunk<CR>', {noremap = true}) 	-- show the git hunk
 
