@@ -51,13 +51,19 @@ require('packer').startup(function(use)
   use 'neovim/nvim-lspconfig'
   use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
   use {'nvim-lualine/lualine.nvim', requires = {'kyazdani42/nvim-web-devicons', opt = true}}
+  use({ "jose-elias-alvarez/null-ls.nvim",
+	  config = function()
+        require("null-ls").setup()
+      end,
+      requires = { "nvim-lua/plenary.nvim" },
+     })
   use 'folke/lsp-colors.nvim'
   use {'nvim-telescope/telescope.nvim', requires = {'nvim-lua/plenary.nvim'}}
   use 'tversteeg/registers.nvim'
   use 'terrortylor/nvim-comment'
-  use 'JoosepAlviste/nvim-ts-context-commentstring'	
+  use 'joosepalviste/nvim-ts-context-commentstring'	
   use {'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'}}
-  use 'Mofiqul/dracula.nvim'
+  use 'mofiqul/dracula.nvim'
 
   if packer_bootstrap then
     require('packer').sync()
@@ -94,6 +100,35 @@ require("nvim_comment").setup({
   hook = function()
     require("ts_context_commentstring.internal").update_commentstring()
   end,
+})
+
+local null_ls = require("null-ls")
+local formatting = null_ls.builtins.formatting
+local sources = { 
+	null_ls.builtins.formatting.goimports,
+}
+
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+null_ls.setup({
+	sources = sources,
+    -- you can reuse a shared lspconfig on_attach callback here
+    on_attach = function(client, bufnr)
+        if client.supports_method("textDocument/formatting") then
+            vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+            vim.api.nvim_create_autocmd("BufWritePre", {
+                group = augroup,
+                buffer = bufnr,
+                callback = function()
+                  vim.lsp.buf.format({
+                    bufnr = bufnr,
+                    filter = function(client)
+                      return client.name == "null-ls"
+                   end
+                  })
+                end,
+            })
+        end
+    end,
 })
 
 -- LSP settings (NavLSP)
