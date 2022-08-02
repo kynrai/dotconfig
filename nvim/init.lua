@@ -172,6 +172,9 @@ require('lspconfig')['rust_analyzer'].setup{
 
 require('lspconfig')['gopls'].setup{
     on_attach = on_attach,
+    settings = {
+    	experimentalWorkspaceModule = true
+    }
 }
 
 require('lspconfig')['terraformls'].setup{
