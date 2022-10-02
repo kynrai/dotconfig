@@ -11,6 +11,8 @@
 !/bat/*
 !/tmux/
 !/tmux/*
+!/zellij/
+!/zellij/*
 !/helix/
 !/helix/*
 /helix/runtime

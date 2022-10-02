@@ -48,3 +48,4 @@ export PATH="$HOME/.poetry/bin:$PATH"
 # bun
 export BUN_INSTALL="/Users/steve/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
