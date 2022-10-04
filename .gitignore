@@ -13,6 +13,8 @@
 !/tmux/*
 !/zellij/
 !/zellij/*
+!/wezterm/
+!/wezterm/*
 !/helix/
 !/helix/*
 /helix/runtime
