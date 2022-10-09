@@ -16,7 +16,6 @@ shell:
    - -l
    - -c
    - "tmux attach || tmux new -s main"
-  # - "zellij attach --index 0 || zellij" 
 
 env:
   TERM: alacritty

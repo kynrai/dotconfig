@@ -2,7 +2,7 @@ local wezterm = require 'wezterm'
 
 return {
   color_scheme = "Dracula",
-  scrollback_lines = 10000,
+  scrollback_lines = 20000,
   window_frame = {
     font = wezterm.font 'JetBrains Mono',
   },
