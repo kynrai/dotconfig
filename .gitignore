@@ -3,18 +3,12 @@
 
 # Allow only these configs
 !.gitignore
+!.zshrc
 !/README.md
-!/starship.toml
 !/alacritty/
 !/alacritty/*
 !/bat/
 !/bat/*
-!/tmux/
-!/tmux/*
-!/zellij/
-!/zellij/*
-!/wezterm/
-!/wezterm/*
 !/helix/
 !/helix/*
 /helix/runtime
@@ -22,4 +16,10 @@
 !/nvim/*
 !/nvim/lua/*
 /nvim/plugins/
-!.zshrc
+!/starship.toml
+!/tmux/
+!/tmux/*
+!/wezterm/
+!/wezterm/*
+!/zellij/
+!/zellij/*
