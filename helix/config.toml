@@ -9,8 +9,12 @@ line-number = "relative"
 [editor.file-picker]
 hidden = false
 
+[editor.indent-guides]
+render = true
+
 [editor.lsp]
 display-messages = true
 
-[editor.indent-guides]
-render = true
+[editor.statusline]
+left = ["mode", "file-name", "spinner"]
+right = ["diagnostics", "file-type", "file-encoding", "file-line-ending", "selections", "spacer", "position-percentage", "position"]
