@@ -14,5 +14,13 @@ return {
   },
   initial_cols = 180,
   initial_rows = 50,
-  hide_tab_bar_if_only_one_tab = true
+  hide_tab_bar_if_only_one_tab = true,
+  keys = {
+    {
+      key = 'n',
+      mods = 'SHIFT|CTRL',
+      action = wezterm.action.ToggleFullScreen,
+    },
+  },
+  native_macos_fullscreen_mode = true
 }

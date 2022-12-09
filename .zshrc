@@ -19,7 +19,7 @@ HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history
 SAVEHIST=10000
 HISTSIZE=10000
 
-alias ls="exa"
+alias ls="exa -als type"
 alias vim="nvim"
 alias cat="bat"
 
@@ -49,3 +49,5 @@ export PATH="$HOME/.poetry/bin:$PATH"
 export BUN_INSTALL="/Users/steve/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
+
+add-zsh-hook -Uz chpwd(){ source <(tea -Eds) }  #tea
