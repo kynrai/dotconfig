@@ -7,6 +7,7 @@ setopt HIST_FIND_NO_DUPS
 setopt HIST_EXPIRE_DUPS_FIRST 
 setopt HIST_REDUCE_BLANKS
 
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
 autoload -Uz compinit && compinit
 
 [ ! -d ~/.zsh/zsh-autosuggestions ] &&  git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
@@ -41,6 +42,7 @@ export PATH="/opt/homebrew/opt/node@16/bin:$PATH"
 
 export PATH="/Users/steve/Library/Python/3.10/bin:$PATH"
 export PATH="$HOME/.poetry/bin:$PATH"
+export PATH="$HOME/.dotnet/tools:$PATH"
 
 # bun completions
 [ -s "/Users/steve/.bun/_bun" ] && source "/Users/steve/.bun/_bun"
