@@ -19,3 +19,6 @@ display-messages = true
 [editor.statusline]
 left = ["mode", "file-name", "version-control", "spacer", "spinner"]
 right = ["diagnostics", "file-type", "file-encoding", "file-line-ending", "selections", "spacer", "position-percentage", "position"]
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
