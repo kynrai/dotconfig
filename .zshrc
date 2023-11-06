@@ -23,6 +23,7 @@ HISTSIZE=10000
 alias ls="exa -als type"
 alias vim="nvim"
 alias cat="bat"
+alias lg="lazygit"
 
 onport() {
   lsof -t -i :$1 | xargs -n1 -I{} ps -p {} -o pid,command
@@ -32,13 +33,14 @@ onport() {
 
 eval "$(starship init zsh)"
 
+export N_PREFIX="$HOME/.n"
+export PATH="$HOME/.n/bin:$PATH"
+
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/steve/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/steve/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/steve/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/steve/google-cloud-sdk/completion.zsh.inc'; fi
-
-export PATH="/opt/homebrew/opt/node@16/bin:$PATH"
 
 export PATH="/Users/steve/Library/Python/3.10/bin:$PATH"
 export PATH="$HOME/.poetry/bin:$PATH"
