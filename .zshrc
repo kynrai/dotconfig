@@ -24,6 +24,7 @@ alias ls="exa -als type"
 alias vim="nvim"
 alias cat="bat"
 alias lg="lazygit"
+alias docker="podman"
 
 onport() {
   lsof -t -i :$1 | xargs -n1 -I{} ps -p {} -o pid,command
