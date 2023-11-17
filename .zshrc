@@ -21,7 +21,6 @@ SAVEHIST=10000
 HISTSIZE=10000
 
 alias ls="exa -als type"
-alias vim="nvim"
 alias cat="bat"
 alias lg="lazygit"
 alias docker="podman"
