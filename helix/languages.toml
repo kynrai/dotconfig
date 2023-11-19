@@ -1,2 +1,6 @@
 [language-server.gopls.config]
 "formatting.gofumpt" = true
+
+[[language]]
+name = "templ"
+auto-format = true

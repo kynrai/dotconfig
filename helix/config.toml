@@ -6,6 +6,7 @@ color-modes = true
 cursorline = true
 idle-timeout = 200
 line-number = "relative"
+auto-format = true
 
 [editor.file-picker]
 hidden = false
