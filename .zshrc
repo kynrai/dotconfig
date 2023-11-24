@@ -33,6 +33,7 @@ onport() {
 
 eval "$(starship init zsh)"
 
+export CDPATH="$HOME/projects:$HOME/projects/atos-digital"
 export N_PREFIX="$HOME/.n"
 export PATH="$HOME/.n/bin:$PATH"
 
