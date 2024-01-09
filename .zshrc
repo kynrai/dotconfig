@@ -56,3 +56,5 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 
 add-zsh-hook -Uz chpwd(){ source <(tea -Eds) }  #tea
+export MODULAR_HOME="/Users/steve/.modular"
+export PATH="/Users/steve/.modular/pkg/packages.modular.com_mojo/bin:$PATH"
