@@ -7,6 +7,13 @@ setopt HIST_FIND_NO_DUPS
 setopt HIST_EXPIRE_DUPS_FIRST 
 setopt HIST_REDUCE_BLANKS
 
+PROMPT="%(?.%F{green}√.%F{red}✗%?)%f %B%1~%b %# "
+RPROMPT="%*"
+
+HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history
+SAVEHIST=10000
+HISTSIZE=10000
+
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
 autoload -Uz compinit && compinit
 
@@ -22,22 +29,19 @@ update_zsh() {
         [ -d "$dir" ] && git -C "$dir" pull
     done
 }
-PROMPT="%(?.%F{green}√.%F{red}✗%?)%f %B%1~%b %# "
-RPROMPT="%*"
 
-HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history
-SAVEHIST=10000
-HISTSIZE=10000
+[ ! -f ~/.config/helix/config.toml ] && mkdir -p ~/.config/helix && curl --fail -o ~/.config/helix/config.toml https://raw.githubusercontent.com/kynrai/dotconfig/refs/heads/master/helix/config.toml
+[ ! -f ~/.config/bat/config ] && mkdir -p ~/.config/bat && curl --fail -o ~/.config/bat/config https://raw.githubusercontent.com/kynrai/dotconfig/refs/heads/master/bat/config
+[ ! -f ~/.config/starship.toml ] && mkdir -p ~/.config && curl --fail -o ~/.config/starship.toml https://raw.githubusercontent.com/kynrai/dotconfig/refs/heads/master/starship.toml
+eval "$(starship init zsh)"
+
 
 alias ls="exa -als type"
 alias cat="bat"
-
 
 onport() {
   lsof -t -i :$1 | xargs -n1 -I{} ps -p {} -o pid,command
 }
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-eval "$(starship init zsh)"
 
