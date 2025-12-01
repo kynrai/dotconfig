@@ -35,7 +35,7 @@ update_zsh() {
 [ ! -f ~/.config/bat/config ] && mkdir -p ~/.config/bat && curl --fail -o ~/.config/bat/config https://raw.githubusercontent.com/kynrai/dotconfig/refs/heads/master/bat/config
 [ ! -f ~/.config/bat/themes/CatppuccinMocha.tmTheme ] && mkdir -p ~/.config/bat/themes && curl --fail -o ~/.config/bat/themes/CatppuccinMocha.tmTheme https://raw.githubusercontent.com/kynrai/dotconfig/refs/heads/master/bat/themes/CatppuccinMocha.tmTheme
 
-[ ! -f ~/.config/ghostty/config ] && mkdir -p ~/.config/ghostty && curl --fail -o ~/.config/ghostty/config https://raw.githubusercontent.com/kynrai/dotconfig/refs/heads/master/ghostty/config]
+[ ! -f ~/.config/ghostty/config ] && mkdir -p ~/.config/ghostty && curl --fail -o ~/.config/ghostty/config https://raw.githubusercontent.com/kynrai/dotconfig/refs/heads/master/ghostty/config
 [ ! -f ~/.config/ghostty/themes/catppuccin-mocha ] && mkdir -p ~/.config/ghostty/themes && curl --fail -o ~/.config/ghostty/themes/catppuccin-mocha https://raw.githubusercontent.com/kynrai/dotconfig/refs/heads/master/ghostty/themes/catppuccin-mocha
 
 [ ! -f ~/.config/starship.toml ] && mkdir -p ~/.config && curl --fail -o ~/.config/starship.toml https://raw.githubusercontent.com/kynrai/dotconfig/refs/heads/master/starship.toml
