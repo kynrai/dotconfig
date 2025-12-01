@@ -35,7 +35,6 @@ update_zsh() {
 [ ! -f ~/.config/starship.toml ] && mkdir -p ~/.config && curl --fail -o ~/.config/starship.toml https://raw.githubusercontent.com/kynrai/dotconfig/refs/heads/master/starship.toml
 eval "$(starship init zsh)"
 
-
 alias ls="exa -als type"
 alias cat="bat"
 
