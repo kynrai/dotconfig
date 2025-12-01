@@ -35,8 +35,13 @@ update_zsh() {
 [ ! -f ~/.config/starship.toml ] && mkdir -p ~/.config && curl --fail -o ~/.config/starship.toml https://raw.githubusercontent.com/kynrai/dotconfig/refs/heads/master/starship.toml
 eval "$(starship init zsh)"
 
-alias ls="exa -als type"
-alias cat="bat"
+if type "exa" > /dev/null; then
+  alias ls="exa -als type"
+fi
+
+if type "bat" > /dev/null; then
+  alias cat="bat"
+fi
 
 onport() {
   lsof -t -i :$1 | xargs -n1 -I{} ps -p {} -o pid,command
