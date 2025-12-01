@@ -13,6 +13,15 @@ autoload -Uz compinit && compinit
 [ ! -d ~/.zsh/zsh-autosuggestions ] &&  git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
+[ ! -d ~/.zsh/zsh-syntax-highlighting ] &&  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh/zsh-syntax-highlighting
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+update_zsh() {
+    for dir in ~/.zsh/*; do
+        echo "Updating $dir"
+        [ -d "$dir" ] && git -C "$dir" pull
+    done
+}
 PROMPT="%(?.%F{green}√.%F{red}✗%?)%f %B%1~%b %# "
 RPROMPT="%*"
 
